@@ -1,24 +1,23 @@
-import javax.imageio.ImageIO;
-import java.io.File;
+import java.awt.image.BufferedImage;
 
-/* Just a special tile. No interesting behaviour here */
 public class EndPoint extends Tile {
 
-
+    private BufferedImage endPointIcon;
 
     public EndPoint(int coordX, int coordY) {
-        super(coordX, coordY);
-        setImageIcon("./images/endpoint");
+        super(coordX, coordY,"./images/endpoint.png");
     }
 
-    public String getType() {
-        // There's definitely a better way to do this
-        return "End Point";
-    }
+//    public String getType() {
+//        // There's definitely a better way to do this
+//        return "End Point";
+//    }
 
     // Might be a good idea to have the engine
     // handle this.
     public void win(){
 
     }
+
+
 }

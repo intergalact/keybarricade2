@@ -6,21 +6,16 @@
 *
 * */
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Player extends Tile {
-
     private boolean hasKey;
     private Barricade barricade; //associatie
     // Changed for verbosity's sake
     private Key keyInPocket = null;
 
     public Player(int coordX, int coordY) {
-        super(coordX, coordY);
-        setImageIcon("./images/player.png");
+        super(coordX, coordY, "./images/player.png");
     }
 
 //    public void pickUpKey(Key keyFromFloor){

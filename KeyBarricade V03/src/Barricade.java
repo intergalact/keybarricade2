@@ -1,18 +1,17 @@
-import javax.imageio.ImageIO;
-import java.io.File;
+import java.awt.image.BufferedImage;
 
 /* Barricade starts locked
 *  Barricade disappears if not locked
 * */
 public class Barricade extends Tile {
 
+    private BufferedImage barricadeIcon;
     private int pinCode;
     // The barricade should be locked when the game starts
     private boolean locked = true;
 
     public Barricade(int coordX, int coordY) {
-        super(coordX, coordY);
-        setImageIcon("./images/barricade.png");
+        super(coordX, coordY, "./images/barricade.png");
         // The barricade needs a pin code generated the same way as the key's code
         pinCode = (int) Math.random()*8 + 1;
         // Should we times the int by 10 or 100?

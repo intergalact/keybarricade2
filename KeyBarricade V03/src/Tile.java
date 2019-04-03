@@ -2,28 +2,38 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Tile {
 
     private int coordX;
     private int coordY;
-    private static BufferedImage imageIcon;
     private static final int LENGTH = 5;
     private static final int WIDTH = 5;
 
-    public Tile(int X, int Y) {
+    private String path;
+    private static java.util.Map<String, BufferedImage> loaded = new HashMap<>();
+
+
+    public Tile(int X, int Y, String path) {
         coordX = X;
         coordY = Y;
-        setImageIcon("./images/tile.png");
+        this.path = path;
+        if (!loaded.containsKey(path))
+            loaded.put(path, setImageIcon(path));
     }
 
-    public static void setImageIcon(String imagePath) {
-        if(imageIcon == null){
+    public static BufferedImage setImageIcon(String imagePath) {
+        BufferedImage imageIcon;
             try {
                 imageIcon = (ImageIO.read(new File(imagePath)));
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
-        }
+        return imageIcon;
+    }
+
+    public BufferedImage getImageIcon() {
+        return loaded.get(path);
     }
 }
