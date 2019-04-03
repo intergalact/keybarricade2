@@ -25,7 +25,6 @@ public class Interface extends JFrame {
     public void addComponents(){
         map = new Map();
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridwidth = 2;
         gc.weightx = 1;
         gc.weighty = 1;
         gc.gridx = 0;
@@ -75,8 +74,7 @@ public class Interface extends JFrame {
         add(panelChooseLevel, gc);
 //        gc.weightx = GridBagConstraints.REMAINDER;
 //        gc.weighty = GridBagConstraints.REMAINDER;
-        gc.gridheight = 1;
-        gc.gridwidth = 1;
+        gc.gridwidth = 0;
         gc.gridx = 1;
         gc.gridy = 1;
 //        gc.anchor = GridBagConstraints.LINE_START;
