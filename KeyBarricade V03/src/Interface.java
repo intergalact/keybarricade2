@@ -1,12 +1,11 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.nio.file.Paths;
 
 public class Interface extends JFrame {
 
-    Map map;
+    private Map map;
 
     public Interface() throws HeadlessException {
         setupFrame();
@@ -16,36 +15,38 @@ public class Interface extends JFrame {
 
     public void setupFrame(){
         setTitle("Key Barricade");
-        setSize(new Dimension(600, 700));
-        setLayout(new GridBagLayout());
+        setSize(new Dimension(600, 730));
+        setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
     public void addComponents(){
+        // Create panels
         map = new Map();
-        GridBagConstraints gc = new GridBagConstraints();
-        gc.weightx = 1;
-        gc.weighty = 1;
-        gc.gridx = 0;
-        gc.gridy = 0;
-        gc.fill = GridBagConstraints.BOTH;
-        add(map, gc);
-
         JPanel panelChooseLevel = new JPanel(new GridLayout(3,1));
+        JPanel panelReset = new JPanel();
+        map.setBounds(0,0,600,600);
+        panelChooseLevel.setBounds(0,600,300,100);
+        panelReset.setBounds(300,600,300,100);
 
-        //create buttons and fill panelChooseLevel
+        // Create buttons
         JRadioButton buttonLevel1 = new JRadioButton("Level 1");
         JRadioButton buttonLevel2 = new JRadioButton("Level 2");
         JRadioButton buttonLevel3 = new JRadioButton("Level 3");
+        JRadioButton buttonReset = new JRadioButton("Reset");
+
+        // Add buttons to panels
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(buttonLevel1);
-        panelChooseLevel.add(buttonLevel1);
         buttonGroup.add(buttonLevel2);
-        panelChooseLevel.add(buttonLevel2);
         buttonGroup.add(buttonLevel3);
+        panelChooseLevel.add(buttonLevel1);
+        panelChooseLevel.add(buttonLevel2);
         panelChooseLevel.add(buttonLevel3);
+        panelReset.add(buttonReset);
 
+        // Add ActionListeners
         buttonLevel1.addActionListener((ActionEvent e) -> {
             map.fillMapLetters(Paths.get("level1-letters"));
             map.repaint();
@@ -61,28 +62,18 @@ public class Interface extends JFrame {
             map.repaint();
         });
 
-        JPanel panelReset = new JPanel(new GridLayout());
-        JRadioButton buttonReset = new JRadioButton("Reset");
-        panelReset.add(buttonReset);
+        buttonReset.addActionListener((ActionEvent e) -> {
+            reset();
+        });
 
-        gc.weightx = 0;
-        gc.weighty = 0;
-        gc.gridx = 0;
-        gc.gridy = 1;
-        gc.fill = GridBagConstraints.HORIZONTAL;
-        gc.anchor = GridBagConstraints.LINE_START;
-        add(panelChooseLevel, gc);
-//        gc.weightx = GridBagConstraints.REMAINDER;
-//        gc.weighty = GridBagConstraints.REMAINDER;
-        gc.gridwidth = 0;
-        gc.gridx = 1;
-        gc.gridy = 1;
-//        gc.anchor = GridBagConstraints.LINE_START;
-        add(panelReset, gc);
+        // Add panels to frame
+        add(map);
+        add(panelChooseLevel);
+        add(panelReset);
     }
 
     public void reset() {
-
+        //TODO write reset action
     }
 
 }
