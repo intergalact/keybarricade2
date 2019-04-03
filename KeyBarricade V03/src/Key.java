@@ -10,9 +10,9 @@ public class Key extends Tile {
     private int pinCode;
     private Barricade barricade; //associatie  <- Don't think this is needed tbh
 
-    public Key(int coordX, int coordY/*int pinCode*/) {
+    public Key(int coordX, int coordY, int pinCode) {
         super(coordX, coordY, "./images/key.png");
-//        this.pinCode = pinCode;
+        this.pinCode = pinCode;
     }
 
     public String getType() {

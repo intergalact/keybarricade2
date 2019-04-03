@@ -44,11 +44,23 @@ and fill the map with the corresponding GamePiece.
                         case 'p':
                             mapLetters[row][column] = new Player(row,column);
                             break;
+                        case 'K':
+                            mapLetters[row][column] = new Key(row,column,130);
+                            break;
                         case 'k':
-                            mapLetters[row][column] = new Key(row,column);
+                            mapLetters[row][column] = new Key(row,column,290);
+                            break;
+                        case '2':case '3':
+                            mapLetters[row][column] = new Key(row,column, 100*(ch-'0'));
+                            break;
+                        case 'B':
+                            mapLetters[row][column] = new Barricade(row,column,130);
                             break;
                         case 'b':
-                            mapLetters[row][column] = new Barricade(row,column);
+                            mapLetters[row][column] = new Barricade(row,column, 290);
+                            break;
+                        case '1':
+                            mapLetters[row][column] = new Barricade(row,column, 100);
                             break;
                         case 'w':
                             mapLetters[row][column] = new Wall(row,column);
@@ -57,7 +69,6 @@ and fill the map with the corresponding GamePiece.
                             mapLetters[row][column] = new EndPoint(row,column);
                             break;
                     }
-                    System.out.println("Op plek (" + row + "," + column + ") komt een " + ch);
                     column++;
                 }
                 row++;
@@ -119,3 +130,9 @@ and fill the map with the corresponding GamePiece.
         return mapLetters;
     }
 }
+
+//                        Pascals code met ASCII berekeningen
+//
+//                        case '2':case '3':
+//                            mapLetters[row][column] = new Key(row,column, 100*(ch-'0'));
+//                            break;

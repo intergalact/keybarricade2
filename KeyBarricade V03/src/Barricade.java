@@ -10,17 +10,9 @@ public class Barricade extends Tile {
     // The barricade should be locked when the game starts
     private boolean locked = true;
 
-    public Barricade(int coordX, int coordY) {
+    public Barricade(int coordX, int coordY, int pinCode) {
         super(coordX, coordY, "./images/barricade.png");
-        // The barricade needs a pin code generated the same way as the key's code
-        pinCode = (int) Math.random()*8 + 1;
-        // Should we times the int by 10 or 100?
-        int oneOrTwo = (int) Math.random()+1;
-        if (oneOrTwo == 1) {
-            pinCode = pinCode*10;
-        } else {
-            pinCode = pinCode*100;
-        }
+        this.pinCode = pinCode;
     }
 
     public String getType() {
