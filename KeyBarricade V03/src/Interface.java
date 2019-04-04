@@ -12,6 +12,7 @@ public class Interface extends JFrame {
     public Interface() throws HeadlessException {
         setupFrame();
         addComponents();
+        paneWin();
         setVisible(true);
     }
 
@@ -53,22 +54,27 @@ public class Interface extends JFrame {
             currentLevel = Paths.get("level1-letters");
             map.fillMapLetters(currentLevel);
             map.repaint();
+//            addKeyListener(map.getPlayer());
+//            map.setFocusable(true);
         });
 
         buttonLevel2.addActionListener((ActionEvent e) -> {
             currentLevel = Paths.get("level2-letters");
             map.fillMapLetters(currentLevel);
             map.repaint();
+            map.setFocusable(true);
         });
 
         buttonLevel3.addActionListener((ActionEvent e) -> {
             currentLevel = Paths.get("level3-letters");
             map.fillMapLetters(currentLevel);
             map.repaint();
+            map.setFocusable(true);
         });
 
         buttonReset.addActionListener((ActionEvent e) -> {
             reset();
+            map.setFocusable(true);
         });
 
         // Add panels to frame
@@ -77,20 +83,16 @@ public class Interface extends JFrame {
         add(panelReset);
     }
 
+    public void paneWin(){
+        if (map.win()) {
+            JOptionPane paneWin = new JOptionPane();
+            add(paneWin);
+        }
+    }
+
     public void reset() {
         map.fillMapLetters(currentLevel);
         repaint();
-    }
-
-    public void win(){
-        int playerX = map.getPlayer().getCoordX();
-        int playerY =  map.getPlayer().getCoordY();
-        int endPointX = map.getEndPoint().getCoordX();
-        int endPointY = map.getEndPoint().getCoordY();
-        JOptionPane panelWin = new JOptionPane();
-        if  ( playerX == endPointX && playerY == endPointY){
-            add(panelWin);
-        }
     }
 
 }

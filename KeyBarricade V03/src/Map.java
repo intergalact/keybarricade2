@@ -18,7 +18,7 @@ public class Map extends JPanel {
         start();
         // Add KeyListener
         setFocusable(true);
-        this.addKeyListener(getPlayer());
+        addKeyListener(getPlayer());
     }
 
     public static void main(String[] args) {
@@ -80,6 +80,15 @@ and fill the map with the corresponding GamePiece.
 
     public void start(){
         fillMapLetters(Paths.get("level1-letters"));
+    }
+
+    public boolean win(){
+        boolean won = false;
+        if  (getPlayer().getCoordX() == getEndPoint().getCoordX() && getPlayer().getCoordY() == getEndPoint().getCoordY())
+            won = true;
+        else
+            won = false;
+        return won;
     }
 
     public void paintComponent(Graphics g){

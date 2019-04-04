@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public abstract class Tile {
 
+    // Convert to Enum later
     private static final int BARRICADE10 = 0;
     private static final int BARRICADE20 = 1;
     private static final int BARRICADE30 = 2;
