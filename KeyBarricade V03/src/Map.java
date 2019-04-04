@@ -12,6 +12,8 @@ public class Map extends JPanel {
     private Tile[][] mapLetters;
     private Player p;
     private EndPoint e;
+    private int previousPlayerX;
+    private int previousPlayerY;
 
     public Map() {
         mapLetters = new Tile[LEVELDIM][LEVELDIM];
@@ -89,6 +91,15 @@ and fill the map with the corresponding GamePiece.
         else
             won = false;
         return won;
+    }
+
+    public void move(){
+        System.out.println("RIGHT");
+        previousPlayerX = p.getCoordX();
+        p.setCoordX(p.getCoordX()+1);
+        mapLetters[previousPlayerX][p.getCoordY()] = new Empty(previousPlayerX,p.getCoordY(), 3);
+        mapLetters[p.getCoordX()][p.getCoordY()] = p;
+        repaint();
     }
 
     public void paintComponent(Graphics g){

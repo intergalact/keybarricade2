@@ -17,14 +17,14 @@ public class Barricade extends Tile {
 
     }
 
-    public void standOn() {
-        //add code to check player.keycode with barricade.keycode open/remove barricade
-        if (this.pinCode != player.getKeyCode()) {
-            player.setCoordX(player.getPreviousPlayerX());
-            player.setCoordY(player.getPreviousPlayerY());
-        }
-
-    }
+//    public void standOn() {
+//        //add code to check player.keycode with barricade.keycode open/remove barricade
+//        if (this.pinCode != player.getKeyCode()) {
+//            player.setCoordX(player.getPreviousPlayerX());
+//            player.setCoordY(player.getPreviousPlayerY());
+//        }
+//
+//    }
 
     // Old code below, might be usable
     public boolean attemptUnlock(int pin) {

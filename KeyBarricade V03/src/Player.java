@@ -10,23 +10,14 @@ public class Player extends Tile implements KeyListener {
 
     private int direction = KeyEvent.VK_UP;
 
-    private int previousPlayerX;
-    private int previousPlayerY;
-    private int playerCoordX;
-    private int playerCoordY;
-
-
     private boolean hasKey = false;
     private int keyCode = -1;
 
     private Key key;                // association
-
     private Barricade barricade;    // association
 
     public Player(int coordX, int coordY, int iconNum) {
         super(coordX, coordY, iconNum);
-        this.playerCoordX = coordX;
-        this.playerCoordY = coordY;
     }
 
     @Override
@@ -37,8 +28,8 @@ public class Player extends Tile implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         switch(keyCode){
-            case UP:
-                System.out.println("UP");
+            case RIGHT:
+//                map.move();
                 break;
             case KeyEvent.VK_Q:
                 System.exit(0);
@@ -54,24 +45,24 @@ public class Player extends Tile implements KeyListener {
     //put direction cases under keylistener
 
     public void move(){
-        switch (direction){
-            case UP:
-                previousPlayerY = playerCoordY;         //store last location in case of invalid move
-                playerCoordY++;                         //change current location
-                break;
-            case RIGHT:
-                playerCoordX++;
-                previousPlayerX = playerCoordX--;
-                break;
-            case DOWN:
-                playerCoordY--;
-                previousPlayerY = playerCoordY++;
-                break;
-            case LEFT:
-                playerCoordX--;
-                previousPlayerX = playerCoordX++;
-                break;
-        }
+//        switch (direction){
+//            case UP:
+//                previousPlayerY = playerCoordY;         //store last location in case of invalid move
+//                playerCoordY++;                         //change current location
+//                break;
+//            case RIGHT:
+//                playerCoordX++;
+//                previousPlayerX = playerCoordX--;
+//                break;
+//            case DOWN:
+//                playerCoordY--;
+//                previousPlayerY = playerCoordY++;
+//                break;
+//            case LEFT:
+//                playerCoordX--;
+//                previousPlayerX = playerCoordX++;
+//                break;
+//        }
     }
 
 //    public void pickUpKey() {
@@ -83,19 +74,11 @@ public class Player extends Tile implements KeyListener {
 //
 //    }
 
-    public void useKey() {
-        barricade.standOn();
-    }
+//    public void useKey() {
+//        barricade.standOn();
+//    }
 
     public int getKeyCode() {
         return keyCode;
-    }
-
-    public int getPreviousPlayerX() {
-        return previousPlayerX;
-    }
-
-    public int getPreviousPlayerY(){
-        return previousPlayerY;
     }
 }
