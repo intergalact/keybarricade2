@@ -6,14 +6,10 @@ public class Key extends Tile {
     private int pinCode;
     private Barricade barricade; //associatie  <- Don't think this is needed tbh (mweya)
     private Player player;
-    private int coordX;
-    private int coordY;
 
     public Key(int coordX, int coordY, int pinCode) {
         super(coordX, coordY, "./images/key.png");
         this.pinCode = pinCode;
-        this.coordX = coordX;
-        this.coordY = coordY;
     }
 
     public void pickedUp(){
@@ -25,9 +21,12 @@ public class Key extends Tile {
     }
 
     public void standOn(){
-        if((this.coordX == player.getCoordX()) && (this.coordY == player.getCoordY())){
+        if((this.getCoordX() == player.getCoordX()) && (this.getCoordY() == player.getCoordY())){
             // add code for player standOn key tile
 
         }
     }
+
+    @Override
+    public void move() { }
 }

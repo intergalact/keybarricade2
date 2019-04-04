@@ -39,4 +39,9 @@ public class Barricade extends Tile {
             return false;
         }
     }
+
+    @Override
+    public void move() {
+
+    }
 }

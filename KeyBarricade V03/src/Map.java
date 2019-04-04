@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,14 +11,17 @@ import java.nio.file.Paths;
 
 public class Map extends JPanel {
 
-    private static final int LEVELDIM = 10; //nr of rows and columns
-    private static final int LENGTH = 200;
-    private static final int WIDTH = 200;
+    private static int DIMENSION = 600;
+    private static int LEVELDIM = 10; //nr of rows and columns
     private Tile[][] mapLetters;
+    Player p;
 
     public Map() {
         mapLetters = new Tile[LEVELDIM][LEVELDIM];
         start();
+        setFocusable(true);
+        this.addKeyListener(getPlayer());
+
     }
 
     public static void main(String[] args) {
@@ -33,10 +40,11 @@ and fill the map with the corresponding GamePiece.
                 for (char ch : s.toCharArray()) {
                     switch (ch){
                         case 't':
-                            mapLetters[row][column] = new Tile(row,column,"./images/tile.png");
+                            mapLetters[row][column] = new Empty(row,column);
                             break;
                         case 'p':
-                            mapLetters[row][column] = new Player(row,column);
+                            p = new Player(row,column);
+                            mapLetters[row][column] = p;
                             break;
                         case 'K':
                             mapLetters[row][column] = new Key(row,column,130);
@@ -78,11 +86,10 @@ and fill the map with the corresponding GamePiece.
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        int x = 0;
-        int y = 0;
+        int x = 0, y = 0;
 
-        for (int i = 0; i < Map.getLEVELDIM(); i++) {
-            for (int j = 0; j < Map.getLEVELDIM(); j++) {
+        for (int i = 0; i < getLEVELDIM(); i++) {
+            for (int j = 0; j < getLEVELDIM(); j++) {
                 g.drawImage(getMapLetters()[i][j].getImageIcon(), x, y, this);
                 x+=60;
             }
@@ -98,10 +105,12 @@ and fill the map with the corresponding GamePiece.
     public Tile[][] getMapLetters() {
         return mapLetters;
     }
-}
 
-//                        Pascals code met ASCII berekeningen
-//
-//                        case '2':case '3':
-//                            mapLetters[row][column] = new Key(row,column, 100*(ch-'0'));
-//                            break;
+    public static int getDIMENSION() {
+        return DIMENSION;
+    }
+
+    public Player getPlayer() {
+        return p;
+    }
+}

@@ -10,4 +10,8 @@ public class EndPoint extends Tile {
 
     }
 
+    @Override
+    public void move() {
+
+    }
 }

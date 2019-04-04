@@ -8,4 +8,9 @@ public class Wall extends Tile {
     public void blockPlayer(){
 
     }
+
+    @Override
+    public void move() {
+
+    }
 }

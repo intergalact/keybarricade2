@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Tile {
+public abstract class Tile {
 
     private int coordX;
     private int coordY;
-    private static final int LENGTH = 5;
-    private static final int WIDTH = 5;
-
     private String path;
     private static java.util.Map<String, BufferedImage> loaded = new HashMap<>();
 
@@ -52,4 +49,6 @@ public class Tile {
     public void setCoordY(int coordY) {
         this.coordY = coordY;
     }
+
+    public abstract void move();
 }

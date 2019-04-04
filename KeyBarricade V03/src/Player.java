@@ -1,13 +1,14 @@
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Player extends Tile {
+public class Player extends Tile implements KeyListener {
 
     private static final int UP     = KeyEvent.VK_UP;     // move up
     private static final int RIGHT  = KeyEvent.VK_RIGHT;    // move right
     private static final int DOWN   = KeyEvent.VK_DOWN;   // move down
     private static final int LEFT   = KeyEvent.VK_LEFT;   // move left
 
-    private int playerDirection = KeyEvent.VK_UP;
+    private int direction = KeyEvent.VK_UP;
 
     private int previousPlayerX;
     private int previousPlayerY;
@@ -18,23 +19,45 @@ public class Player extends Tile {
     private boolean hasKey = false;
     private int keyCode = -1;
 
-    private Key key;                // associatie
+    private Key key;                // association
 
-    private Barricade barricade;    // associatie
+    private Barricade barricade;    // association
 
     public Player(int coordX, int coordY) {
         super(coordX, coordY, "./images/player.png");
         this.playerCoordX = coordX;
         this.playerCoordY = coordY;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        switch(keyCode){
+            case UP:
+                System.out.println("UP");
+                break;
+            case KeyEvent.VK_W:
+                System.out.println("W");
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 
-    //put playerDirection cases under keylistener or jbutton actionlistener in interface
+    //put direction cases under keylistener
+
     public void move(){
-        switch (playerDirection){
+        switch (direction){
             case UP:
-                playerCoordY++;                     //change current location
-                previousPlayerY = playerCoordY--;   //store last location in case of invalid move
+                previousPlayerY = playerCoordY;         //store last location in case of invalid move
+                playerCoordY++;                         //change current location
                 break;
             case RIGHT:
                 playerCoordX++;
@@ -51,7 +74,6 @@ public class Player extends Tile {
         }
     }
 
-
     public void pickUpKey() {
         if ((this.playerCoordX == key.getCoordX()) && (this.playerCoordY == key.getCoordY())){
             this.keyCode = key.getPinCode();
@@ -60,6 +82,7 @@ public class Player extends Tile {
         }
 
     }
+
     public void useKey() {
         barricade.standOn();
     }

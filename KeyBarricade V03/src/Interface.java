@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Interface extends JFrame {
 
     private Map map;
+    private Path currentLevel;
 
     public Interface() throws HeadlessException {
         setupFrame();
@@ -26,7 +28,7 @@ public class Interface extends JFrame {
         map = new Map();
         JPanel panelChooseLevel = new JPanel(new GridLayout(3,1));
         JPanel panelReset = new JPanel();
-        map.setBounds(0,0,600,600);
+        map.setBounds(0,0,Map.getDIMENSION(),Map.getDIMENSION());
         panelChooseLevel.setBounds(0,600,300,100);
         panelReset.setBounds(300,600,300,100);
 
@@ -34,7 +36,7 @@ public class Interface extends JFrame {
         JRadioButton buttonLevel1 = new JRadioButton("Level 1");
         JRadioButton buttonLevel2 = new JRadioButton("Level 2");
         JRadioButton buttonLevel3 = new JRadioButton("Level 3");
-        JRadioButton buttonReset = new JRadioButton("Reset");
+        JRadioButton buttonReset = new JRadioButton("Reset"); //TODO make buttonReset not-weird when pressed
 
         // Add buttons to panels
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -48,17 +50,20 @@ public class Interface extends JFrame {
 
         // Add ActionListeners
         buttonLevel1.addActionListener((ActionEvent e) -> {
-            map.fillMapLetters(Paths.get("level1-letters"));
+            currentLevel = Paths.get("level1-letters");
+            map.fillMapLetters(currentLevel);
             map.repaint();
         });
 
         buttonLevel2.addActionListener((ActionEvent e) -> {
-            map.fillMapLetters(Paths.get("level2-letters"));
+            currentLevel = Paths.get("level2-letters");
+            map.fillMapLetters(currentLevel);
             map.repaint();
         });
 
         buttonLevel3.addActionListener((ActionEvent e) -> {
-            map.fillMapLetters(Paths.get("level3-letters"));
+            currentLevel = Paths.get("level3-letters");
+            map.fillMapLetters(currentLevel);
             map.repaint();
         });
 
@@ -73,7 +78,8 @@ public class Interface extends JFrame {
     }
 
     public void reset() {
-        //TODO write reset action
+        map.fillMapLetters(currentLevel);
+        repaint();
     }
 
 }
