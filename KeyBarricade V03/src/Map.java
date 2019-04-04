@@ -10,14 +10,15 @@ public class Map extends JPanel {
     private static int DIMENSION = 600;
     private static int LEVELDIM = 10; //nr of rows and columns
     private Tile[][] mapLetters;
-    Player p;
+    private Player p;
+    private EndPoint e;
 
     public Map() {
         mapLetters = new Tile[LEVELDIM][LEVELDIM];
         start();
+        // Add KeyListener
         setFocusable(true);
         this.addKeyListener(getPlayer());
-
     }
 
     public static void main(String[] args) {
@@ -36,35 +37,36 @@ and fill the map with the corresponding GamePiece.
                 for (char ch : s.toCharArray()) {
                     switch (ch){
                         case 't':
-                            mapLetters[row][column] = new Empty(row,column);
+                            mapLetters[row][column] = new Empty(row,column, 3);
                             break;
                         case 'p':
-                            p = new Player(row,column);
+                            p = new Player(row,column, 8);
                             mapLetters[row][column] = p;
                             break;
                         case 'K':
-                            mapLetters[row][column] = new Key(row,column,130);
+                            mapLetters[row][column] = new Key(row,column,5);
                             break;
                         case 'k':
-                            mapLetters[row][column] = new Key(row,column,290);
+                            mapLetters[row][column] = new Key(row,column,6);
                             break;
                         case '2':
-                            mapLetters[row][column] = new Key(row,column, 100);
+                            mapLetters[row][column] = new Key(row,column, 7);
                             break;
                         case 'B':
-                            mapLetters[row][column] = new Barricade(row,column,130);
+                            mapLetters[row][column] = new Barricade(row,column,0);
                             break;
                         case 'b':
-                            mapLetters[row][column] = new Barricade(row,column, 290);
+                            mapLetters[row][column] = new Barricade(row,column, 1);
                             break;
                         case '1':
-                            mapLetters[row][column] = new Barricade(row,column, 100);
+                            mapLetters[row][column] = new Barricade(row,column, 2);
                             break;
                         case 'w':
-                            mapLetters[row][column] = new Wall(row,column);
+                            mapLetters[row][column] = new Wall(row,column, 9);
                             break;
                         case 'e':
-                            mapLetters[row][column] = new EndPoint(row,column);
+                            e = new EndPoint(row,column, 4);
+                            mapLetters[row][column] = e;
                             break;
                     }
                     column++;
@@ -108,5 +110,9 @@ and fill the map with the corresponding GamePiece.
 
     public Player getPlayer() {
         return p;
+    }
+
+    public EndPoint getEndPoint() {
+        return e;
     }
 }

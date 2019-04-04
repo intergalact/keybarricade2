@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
-    Player p = new Player(3,5);
+    Player p = new Player(3,5,8);
 
     @Test
     public void coordinateXTest(){

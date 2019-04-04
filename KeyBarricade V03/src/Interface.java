@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class Interface extends JFrame {
 
     private Map map;
-    private Path currentLevel;
+    private Path currentLevel = Paths.get("level1-letters");
 
     public Interface() throws HeadlessException {
         setupFrame();
@@ -36,7 +36,7 @@ public class Interface extends JFrame {
         JRadioButton buttonLevel1 = new JRadioButton("Level 1");
         JRadioButton buttonLevel2 = new JRadioButton("Level 2");
         JRadioButton buttonLevel3 = new JRadioButton("Level 3");
-        JRadioButton buttonReset = new JRadioButton("Reset"); //TODO make buttonReset not-weird when pressed
+        JButton buttonReset = new JButton("Reset"); //TODO make buttonReset not-weird when pressed
 
         // Add buttons to panels
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -80,6 +80,17 @@ public class Interface extends JFrame {
     public void reset() {
         map.fillMapLetters(currentLevel);
         repaint();
+    }
+
+    public void win(){
+        int playerX = map.getPlayer().getCoordX();
+        int playerY =  map.getPlayer().getCoordY();
+        int endPointX = map.getEndPoint().getCoordX();
+        int endPointY = map.getEndPoint().getCoordY();
+        JOptionPane panelWin = new JOptionPane();
+        if  ( playerX == endPointX && playerY == endPointY){
+            add(panelWin);
+        }
     }
 
 }

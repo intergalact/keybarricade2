@@ -23,8 +23,8 @@ public class Player extends Tile implements KeyListener {
 
     private Barricade barricade;    // association
 
-    public Player(int coordX, int coordY) {
-        super(coordX, coordY, "./images/player.png");
+    public Player(int coordX, int coordY, int iconNum) {
+        super(coordX, coordY, iconNum);
         this.playerCoordX = coordX;
         this.playerCoordY = coordY;
     }
@@ -74,14 +74,14 @@ public class Player extends Tile implements KeyListener {
         }
     }
 
-    public void pickUpKey() {
-        if ((this.playerCoordX == key.getCoordX()) && (this.playerCoordY == key.getCoordY())){
-            this.keyCode = key.getPinCode();
-            hasKey = true;
-            key.standOn();
-        }
-
-    }
+//    public void pickUpKey() {
+//        if ((this.playerCoordX == key.getCoordX()) && (this.playerCoordY == key.getCoordY())){
+//            this.keyCode = key.getPinCode();
+//            hasKey = true;
+//            key.standOn();
+//        }
+//
+//    }
 
     public void useKey() {
         barricade.standOn();

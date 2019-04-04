@@ -8,8 +8,8 @@ public class Barricade extends Tile {
     // The barricade should be locked when the game starts
     private boolean locked = true;
 
-    public Barricade(int coordX, int coordY, int pinCode) {
-        super(coordX, coordY, "./images/barricade.png");
+    public Barricade(int coordX, int coordY, int iconNum) {
+        super(coordX, coordY, iconNum);
         this.pinCode = pinCode;
     }
 

@@ -3,21 +3,15 @@
 
 public class Key extends Tile {
 
-    private int pinCode;
     private Barricade barricade; //associatie  <- Don't think this is needed tbh (mweya)
     private Player player;
 
-    public Key(int coordX, int coordY, int pinCode) {
-        super(coordX, coordY, "./images/key.png");
-        this.pinCode = pinCode;
+    public Key(int coordX, int coordY, int iconNum) {
+        super(coordX, coordY, iconNum);
     }
 
     public void pickedUp(){
 
-    }
-
-    public int getPinCode(){
-        return pinCode;
     }
 
     public void standOn(){
