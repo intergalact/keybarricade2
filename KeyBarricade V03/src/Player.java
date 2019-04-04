@@ -40,8 +40,8 @@ public class Player extends Tile implements KeyListener {
             case UP:
                 System.out.println("UP");
                 break;
-            case KeyEvent.VK_W:
-                System.out.println("W");
+            case KeyEvent.VK_Q:
+                System.exit(0);
                 break;
         }
     }
