@@ -15,9 +15,11 @@ public class Player extends Tile implements KeyListener {
 
     private Key key;                // association
     private Barricade barricade;    // association
+    private Map m;
 
-    public Player(int coordX, int coordY, int iconNum) {
+    public Player(int coordX, int coordY, int iconNum, Map m) {
         super(coordX, coordY, iconNum);
+        this.m = m;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class Player extends Tile implements KeyListener {
         int keyCode = e.getKeyCode();
         switch(keyCode){
             case RIGHT:
-//                map.move();
+                m.move();
                 break;
             case KeyEvent.VK_Q:
                 System.exit(0);

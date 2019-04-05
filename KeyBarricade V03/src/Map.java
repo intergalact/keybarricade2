@@ -10,7 +10,7 @@ public class Map extends JPanel {
     private static int DIMENSION = 600;
     private static int LEVELDIM = 10; //nr of rows and columns
     private Tile[][] mapLetters;
-    private Player p;
+    private Player p; //Tile p, e?
     private EndPoint e;
     private int previousPlayerX;
     private int previousPlayerY;
@@ -42,7 +42,7 @@ and fill the map with the corresponding GamePiece.
                             mapLetters[row][column] = new Empty(row,column, 3);
                             break;
                         case 'p':
-                            p = new Player(row,column, 8);
+                            p = new Player(row,column, 8,this);
                             mapLetters[row][column] = p;
                             break;
                         case 'K':
@@ -85,12 +85,7 @@ and fill the map with the corresponding GamePiece.
     }
 
     public boolean win(){
-        boolean won = false;
-        if  (getPlayer().getCoordX() == getEndPoint().getCoordX() && getPlayer().getCoordY() == getEndPoint().getCoordY())
-            won = true;
-        else
-            won = false;
-        return won;
+        return  (getPlayer().getCoordX() == getEndPoint().getCoordX() && getPlayer().getCoordY() == getEndPoint().getCoordY());
     }
 
     public void move(){
@@ -114,6 +109,10 @@ and fill the map with the corresponding GamePiece.
             x=0;
             y+=60;
         }
+    }
+
+    public void setMapLetters(int coordX, int coordY, Tile gameObject) {
+        mapLetters[coordX][coordY] = gameObject;
     }
 
     public static int getLEVELDIM() {

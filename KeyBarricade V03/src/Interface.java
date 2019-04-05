@@ -10,6 +10,7 @@ public class Interface extends JFrame {
     private Path currentLevel = Paths.get("level1-letters");
 
     public Interface() throws HeadlessException {
+        map = new Map();
         setupFrame();
         addComponents();
         paneWin();
@@ -22,11 +23,11 @@ public class Interface extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        addKeyListener(map.getPlayer());
     }
 
     public void addComponents(){
         // Create panels
-        map = new Map();
         JPanel panelChooseLevel = new JPanel(new GridLayout(3,1));
         JPanel panelReset = new JPanel();
         map.setBounds(0,0,Map.getDIMENSION(),Map.getDIMENSION());
@@ -38,6 +39,11 @@ public class Interface extends JFrame {
         JRadioButton buttonLevel2 = new JRadioButton("Level 2");
         JRadioButton buttonLevel3 = new JRadioButton("Level 3");
         JButton buttonReset = new JButton("Reset"); //TODO make buttonReset not-weird when pressed
+//        buttonLevel1.setFocusable(false);
+//        buttonLevel2.setFocusable(false);
+//        buttonLevel3.setFocusable(false);
+//        buttonReset.setFocusable(false);
+//        buttonLevel1.addKeyListener(map.getPlayer()); //Also a solution, which is better?
 
         // Add buttons to panels
         ButtonGroup buttonGroup = new ButtonGroup();
